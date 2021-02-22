@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import { PropTypes } from 'prop-types';
 import Text from '../../foundation/Text';
 import Grid from '../../foundation/layout/Grid';
 import Box from '../../foundation/layout/Box';
@@ -11,6 +12,14 @@ function CardTitle({ children }) {
     </Text>
   );
 }
+
+CardTitle.propTypes = {
+  children: PropTypes.node,
+};
+
+CardTitle.defaultProps = {
+  children: '',
+};
 
 function CardText({ children }) {
   return (
@@ -26,6 +35,14 @@ function CardText({ children }) {
     </Text>
   );
 }
+
+CardText.propTypes = {
+  children: PropTypes.node,
+};
+
+CardText.defaultProps = {
+  children: '',
+};
 
 function CardImage({ imageSource }) {
   return (
@@ -48,6 +65,10 @@ function CardImage({ imageSource }) {
     </Box>
   );
 }
+
+CardImage.propTypes = {
+  imageSource: PropTypes.string.isRequired,
+};
 
 function CardFeatured({ imageSource, title, description }) {
   return (
@@ -95,6 +116,16 @@ function CardFeatured({ imageSource, title, description }) {
   );
 }
 
+CardFeatured.propTypes = {
+  imageSource: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string,
+};
+
+CardFeatured.defaultProps = {
+  description: '',
+};
+
 function CardDefault({ imageSource, title }) {
   return (
     <Grid.Col
@@ -111,6 +142,11 @@ function CardDefault({ imageSource, title }) {
     </Grid.Col>
   );
 }
+
+CardDefault.propTypes = {
+  imageSource: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+};
 
 export default function Card(portfolioItem) {
   if (portfolioItem.featured) {

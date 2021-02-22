@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import get from 'lodash/get';
 import PropTypes from 'prop-types';
 import propToStyle from '../../../theme/utils/propToStyle';
-import { breakpointsMedia } from '../../../theme/utils/breakpointsMedia';
+import breakpointsMedia from '../../../theme/utils/breakpointsMedia';
 
 function TextCss(theme, variant) {
   return css`    

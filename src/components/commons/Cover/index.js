@@ -2,7 +2,7 @@
 // Title & Subtitle
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { breakpointsMedia } from '../../../theme/utils/breakpointsMedia';
+import breakpointsMedia from '../../../theme/utils/breakpointsMedia';
 import Text from '../../foundation/Text';
 import Box from '../../foundation/layout/Box';
 

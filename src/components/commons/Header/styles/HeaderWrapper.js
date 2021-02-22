@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { breakpointsMedia } from '../../../../theme/utils/breakpointsMedia';
+import breakpointsMedia from '../../../../theme/utils/breakpointsMedia';
 // import { TextStyleVariantsMap } from '../../../foundation/Text';
 
 const HeaderWrapper = styled.nav`

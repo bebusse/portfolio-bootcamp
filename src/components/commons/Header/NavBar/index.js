@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { breakpointsMedia } from '../../../../theme/utils/breakpointsMedia';
+import breakpointsMedia from '../../../../theme/utils/breakpointsMedia';
 import Text, { TextStyleVariantsMap } from '../../../foundation/Text';
 
 const NavWrapper = styled.nav`
