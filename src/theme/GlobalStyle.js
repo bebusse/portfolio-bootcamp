@@ -14,7 +14,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   /* Full height layout */
   html, body {
-    display: flex;
+    ${'' /* display: flex; */}
     min-height: 100vh;
     width: 100%;
   }

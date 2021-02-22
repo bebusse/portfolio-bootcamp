@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import Icons from '../../../theme/Icons';
+import Text from '../../foundation/Text';
 
 const FooterWrapper = styled.footer`
   padding: 14px;
@@ -9,10 +11,6 @@ const FooterWrapper = styled.footer`
   border-radius: 4px; 
   padding-right: 28px;
   padding-left: 28px;
-  img {
-    width: 58px;
-    margin-right: 23px;
-  }
   a {
     color: ${({ theme }) => theme.colors.primary.main.color};
     text-decoration: none;
@@ -28,18 +26,9 @@ export default function Footer(props) {
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
     <FooterWrapper {...props}>
-      <a href="https://www.alura.com.br/">
-        <img src="https://www.alura.com.br/assets/img/alura-logo.svg" alt="Logo Alura" />
-      </a>
-      <p>
-        Criado por Bernardo Busse durante
-        {' '}
-        o
-        {' '}
-        <a href="https://www.alura.com.br/">
-          <span>Bootcamp Alura JAM Stack</span>
-        </a>
-      </p>
+      <Text tag="a" href="https://www.twitter.com" margin="0 20px 0 20px;"><Icons variant="twitter" /></Text>
+      <Text tag="a" href="https://www.github.com" margin="0 20px 0 20px;"><Icons variant="github" /></Text>
+      <Text tag="a" href="https://www.medium.com" margin="0 20px 0 20px;"><Icons variant="medium" /></Text>
     </FooterWrapper>
   );
 }
