@@ -60,6 +60,7 @@ function colBreakpoints(value, cssFunction) {
     if (value[breakpointName] != null) {
       colValuesBreakpointsObj[breakpointName] = cssFunction(value[breakpointName]);
     }
+    return true;
   });
   return colValuesBreakpointsObj;
 }
