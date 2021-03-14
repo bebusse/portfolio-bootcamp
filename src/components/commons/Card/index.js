@@ -4,6 +4,7 @@ import { PropTypes } from 'prop-types';
 import Text from '../../foundation/Text';
 import Grid from '../../foundation/layout/Grid';
 import Box from '../../foundation/layout/Box';
+import CardWrapper from './style/CardWrapper';
 
 function CardTitle({ children }) {
   return (
@@ -82,7 +83,7 @@ function CardFeatured({ imageSource, title, description }) {
         md: '20px',
       }}
     >
-      <cardWrapper>
+      <CardWrapper>
         <Grid.Row>
           <Grid.Col
             offset={{ xs: 0, md: 0 }}
@@ -111,7 +112,7 @@ function CardFeatured({ imageSource, title, description }) {
             </CardText>
           </Grid.Col>
         </Grid.Row>
-      </cardWrapper>
+      </CardWrapper>
     </Grid.Container>
   );
 }
@@ -133,12 +134,12 @@ function CardDefault({ imageSource, title }) {
       value={{ xs: 12, md: 4 }}
       textAlign="center"
     >
-      <cardWrapper>
+      <CardWrapper>
         <CardImage imageSource={imageSource} />
         <CardTitle>
           {title}
         </CardTitle>
-      </cardWrapper>
+      </CardWrapper>
     </Grid.Col>
   );
 }
@@ -152,6 +153,7 @@ export default function Card(portfolioItem) {
   if (portfolioItem.featured) {
     return (
       <CardFeatured
+        key={portfolioItem.title}
         imageSource={portfolioItem.imageSource}
         title={portfolioItem.title}
         description={portfolioItem.description}
@@ -160,6 +162,7 @@ export default function Card(portfolioItem) {
   }
   return (
     <CardDefault
+      key={portfolioItem.title}
       imageSource={portfolioItem.imageSource}
       title={portfolioItem.title}
     />

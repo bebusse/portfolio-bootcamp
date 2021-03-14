@@ -29,15 +29,20 @@ const Container = styled.div`
         max-width: 1222px;
     `,
   })}
-  ${propToStyle('marginTop')}
-  ${propToStyle('marginBottom')}
+    ${propToStyle('marginTop')}
 `;
 
 const Row = styled.div`
-display: flex;
-flex-wrap: wrap;
-margin-right: -16px;
-margin-left: -16px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -16px;
+  margin-left: -16px;
+  ${propToStyle('flex')}
+  ${propToStyle('marginLeft')}
+  ${propToStyle('marginRight')}
+  ${propToStyle('justifyContent')}
+  ${propToStyle('maxHeight')}
+  ${propToStyle('bottom')}
 `;
 
 function colValuesCss(value) {
@@ -89,8 +94,13 @@ const Col = styled.div`
     ${propToStyle('flexDirection')}
     ${propToStyle('marginTop')}
     ${propToStyle('marginBottom')}
-    ${propToStyle('height')}
-    ${propToStyle('textAlign')}
+    ${propToStyle('marginLeft')}
+    ${propToStyle('marginRight')}
+    ${propToStyle('flex')}
+    ${propToStyle('paddingRight')}
+    ${propToStyle('maxHeight')}
+    ${propToStyle('bottom')}
+    ${propToStyle('alignItems')}
 `;
 
 Col.defaultProps = {

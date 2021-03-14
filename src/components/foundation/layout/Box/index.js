@@ -7,11 +7,13 @@ const Box = styled.div`
     ${propToStyle('justifyContent')}
     ${propToStyle('flex')}
     ${propToStyle('flexWrap')}
+    ${propToStyle('backgroundColor')}
     ${propToStyle('backgroundImage')}
     ${propToStyle('backgroundRepeat')}
     ${propToStyle('backgroundPosition')}
-    ${propToStyle('maxHeight')}
-    ${propToStyle('overflow')}
+    ${propToStyle('boxShadow')}
+    ${propToStyle('padding')}
+    ${propToStyle('textAlign')}
 `;
 
 export { Box as default };

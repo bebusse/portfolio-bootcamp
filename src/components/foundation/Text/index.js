@@ -55,27 +55,54 @@ const TextBase = styled.span`
     ${propToStyle('textAlign')}
     ${propToStyle('margin')}
     ${propToStyle('display')}
+    ${({ theme, as }) => {
+    if (as === 'a') {
+      return css`    
+                text-align: center;
+                display: block;
+                text-decoration: none;
+                color: ${get(theme, 'colors.tertiary.light.color')};
+                &:hover {
+                    color: ${get(theme, 'colors.tertiary.light.contrastText')}
+                }
+            `;
+    }
+    return false;
+  }};
 `;
 
 export default function Text({
   tag, variant, children, ...props
 }) {
   // href = href != null ? href={}:'';
+  if (tag !== 'input') {
+    return (
+      <TextBase
+        as={tag}
+        variant={variant}
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...props}
+      >
+        {children}
+      </TextBase>
+    );
+  }
   return (
     <TextBase
       as={tag}
       variant={variant}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
-    >
-      {children}
-    </TextBase>
+    />
   );
 }
 
 Text.propTypes = {
   tag: PropTypes.string.isRequired,
-  variant: PropTypes.string,
+  variant: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+  ]),
   children: PropTypes.node,
 };
 

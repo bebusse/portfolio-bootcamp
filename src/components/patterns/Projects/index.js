@@ -1,8 +1,8 @@
 import React from 'react';
-import Card from '../Card';
+import Card from '../../commons/Card';
 import Grid from '../../foundation/layout/Grid';
 import ProjectsWrapper from './style/ProjectsWrapper';
-import SectionTitle from '../SectionTitle';
+import SectionTitle from '../../commons/SectionTitle';
 
 export default function Projects() {
   const portFolioItems = [

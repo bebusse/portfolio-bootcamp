@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import breakpointsMedia from '../../../../theme/utils/breakpointsMedia';
 import Text, { TextStyleVariantsMap } from '../../../foundation/Text';
@@ -48,7 +49,7 @@ const NavWrapper = styled.nav`
 
 `;
 
-export default function NavBar(props) {
+export default function NavBar({ onOpenContactModal }) {
   const links = [
     {
       texto: 'Sobre Mim',
@@ -60,13 +61,26 @@ export default function NavBar(props) {
     },
   ];
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <NavWrapper {...props}>
+    <NavWrapper>
       {links.map((link) => (
         <li key={link.url}>
-          <Text variant="text" tag="a" href={link.url}>{link.texto}</Text>
+          <Text
+            variant="text"
+            tag="a"
+            href={link.url}
+            onClick={(event) => {
+              event.preventDefault();
+              onOpenContactModal();
+            }}
+          >
+            {link.texto}
+          </Text>
         </li>
       ))}
     </NavWrapper>
   );
 }
+
+NavBar.propTypes = {
+  onOpenContactModal: PropTypes.func.isRequired,
+};

@@ -4,9 +4,6 @@ import { TextStyleVariantsMap } from '../../../foundation/Text';
 
 const CardWrapper = styled.div`
   padding: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   border-radius: 4px; 
   padding-right: 28px;
   padding-left: 28px;
