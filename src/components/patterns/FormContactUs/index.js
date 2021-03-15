@@ -27,11 +27,11 @@ function FormContent() {
     message: '',
   });
 
-  const userDTO = {
-    name: contactInfo.name,
-    email: contactInfo.email,
-    message: contactInfo.message,
-  };
+  // const userDTO = {
+  //   name: contactInfo.name,
+  //   email: contactInfo.email,
+  //   message: contactInfo.message,
+  // };
 
   function submitData() {
     const randomNumber = Math.floor((Math.random() * 100) + 1);
