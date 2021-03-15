@@ -37,9 +37,10 @@ function FormContent() {
     const randomNumber = Math.floor((Math.random() * 100) + 1);
     if (randomNumber % 2 === 0) {
       setSubmissionStatus(formStates.DONE);
-    } else {
-      setSubmissionStatus(formStates.ERROR);
+      return true;
     }
+    setSubmissionStatus(formStates.ERROR);
+    return false;
   }
 
   function validateEmailField(email) {
