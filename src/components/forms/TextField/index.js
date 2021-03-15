@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import Text from '../../foundation/Text';
 
@@ -9,10 +9,22 @@ const InputWrapper = styled.div`
 
 const Input = styled(Text)`
   width: 100%;
-  border: 1px solid ${({ theme }) => theme.colors.tertiary.light.color};
   padding: 12px 16px;
   outline: 0;
   border-radius: ${({ theme }) => theme.borderRadius};
+  
+  ${({ isInvalid }) => {
+    if (isInvalid) {
+      return css`
+        color: ${({ theme }) => theme.colors.error.main.color};
+        border: 1px solid ${({ theme }) => theme.colors.error.main.color};
+      `;
+    }
+    return css`
+        border: 1px solid ${({ theme }) => theme.colors.tertiary.light.color};
+    `;
+  }}
+
 `;
 
 Input.defaultProps = {
@@ -25,6 +37,7 @@ export default function TextField({
   name,
   onChange,
   value,
+  isInvalid,
 }) {
   return (
     <InputWrapper>
@@ -34,6 +47,7 @@ export default function TextField({
         name={name}
         onChange={onChange}
         value={value}
+        isInvalid={isInvalid}
       />
     </InputWrapper>
   );
@@ -44,4 +58,9 @@ TextField.propTypes = {
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
+  isInvalid: PropTypes.bool,
+};
+
+TextField.defaultProps = {
+  isInvalid: false,
 };

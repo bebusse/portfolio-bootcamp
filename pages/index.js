@@ -26,10 +26,7 @@ export default function Home() {
         isOpen={isContactModalOpen}
         onClose={() => setContactModalState(false)}
       >
-        {(propsModal) => {
-          console.log('propsModal',propsModal);
-          return <FormContactUs propsModal={propsModal} />;
-        }}
+        {(propsModal) => <FormContactUs propsModal={propsModal} />}
       </Modal>
       <Projects />
 

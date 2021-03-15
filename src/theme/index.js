@@ -52,6 +52,12 @@ export const colors = {
       contrastText: '#000',
     },
   },
+  error: {
+    main: {
+      color: '#b30000',
+      contrastText: '#fff',
+    },
+  },
   modes: {
     dark: {},
   },

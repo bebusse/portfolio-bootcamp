@@ -54,7 +54,10 @@ const TextBase = styled.span`
     ${TextStyleVariants()}
     ${propToStyle('textAlign')}
     ${propToStyle('margin')}
+    ${propToStyle('marginTop')}
+    ${propToStyle('marginBottom')}
     ${propToStyle('display')}
+    ${propToStyle('zIndex')}
     ${({ theme, as }) => {
     if (as === 'a') {
       return css`    
@@ -69,10 +72,18 @@ const TextBase = styled.span`
     }
     return false;
   }};
+  ${({ theme, isInvalid }) => {
+    if (isInvalid) {
+      return css`
+              color: ${get(theme, 'colors.error.main.color')};
+          `;
+    }
+    return false;
+  }};
 `;
 
 export default function Text({
-  tag, variant, children, ...props
+  tag, variant, children, isInvalid, ...props
 }) {
   // href = href != null ? href={}:'';
   if (tag !== 'input') {
@@ -80,6 +91,7 @@ export default function Text({
       <TextBase
         as={tag}
         variant={variant}
+        isInvalid={isInvalid}
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...props}
       >
@@ -104,9 +116,11 @@ Text.propTypes = {
     PropTypes.object,
   ]),
   children: PropTypes.node,
+  isInvalid: PropTypes.bool,
 };
 
 Text.defaultProps = {
   variant: 'text',
   children: '',
+  isInvalid: false,
 };

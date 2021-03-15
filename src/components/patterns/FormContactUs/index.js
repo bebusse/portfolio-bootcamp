@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+// import { validate } from 'validate.js';
 import { Lottie } from '@crello/react-lottie';
 import successAnimation from './animations/success.json';
 import errorAnimation from './animations/error.json';
@@ -18,6 +19,7 @@ const formStates = {
 
 function FormContent() {
   const [isFormSubmitted, setIsFormSubmitted] = React.useState(false);
+  const [isEmailInvalid, setIsEmailInvalid] = React.useState(false);
   const [submissionStatus, setSubmissionStatus] = React.useState(formStates.DEFAULT);
   const [contactInfo, setContactInfo] = React.useState({
     name: '',
@@ -31,33 +33,23 @@ function FormContent() {
     message: contactInfo.message,
   };
 
-  //   function readData() {
-  //     fetch('https://instalura-api.vercel.app/api/users')
-  //       .then((responseServer) => responseServer.json())
-  //       .then((responseProcessed) => {
-  //       });
-  //   }
+  function submitData() {
+    const randomNumber = Math.floor((Math.random() * 100) + 1);
+    if (randomNumber % 2 === 0) {
+      setSubmissionStatus(formStates.DONE);
+    } else {
+      setSubmissionStatus(formStates.ERROR);
+    }
+  }
 
-  function submitData(data) {
-    fetch('https://instalura-api.vercel.app/api/users', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
-      .then((responseServer) => {
-        if (responseServer.ok) {
-          return responseServer.json();
-        }
-        throw new Error('Não foi possível cadastrar o usuário');
-      })
-      .then(() => {
-        setSubmissionStatus(formStates.DONE);
-      })
-      .catch(() => {
-        setSubmissionStatus(formStates.ERROR);
-      });
+  function validateEmailField(email) {
+    const emailReg = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+    if (emailReg.test(email)) {
+      setIsEmailInvalid(false);
+      return false;
+    }
+    setIsEmailInvalid(true);
+    return true;
   }
 
   function handleChange(event) {
@@ -66,10 +58,18 @@ function FormContent() {
       ...contactInfo,
       [fieldName]: event.target.value,
     });
+    if (fieldName === 'email') {
+      validateEmailField(event.target.value);
+    }
   }
 
-  const isFormInvalid = contactInfo.name.length === 0 || contactInfo.email.length === 0
-  || contactInfo.message.length === 0;
+  function validateForm() {
+    const areFieldsEmpty = contactInfo.name.length === 0 || contactInfo.email.length === 0
+    || contactInfo.message.length === 0;
+    return (areFieldsEmpty || isEmailInvalid);
+  }
+
+  const isFormInvalid = validateForm();
 
   return (
     <form
@@ -79,24 +79,17 @@ function FormContent() {
       onSubmit={(event) => {
         event.preventDefault();
         setIsFormSubmitted(true);
-        submitData(userDTO);
+        // submitData(userDTO);
+        submitData();
       }}
     >
       <Text
         variant="title"
         tag="h1"
         color="tertiary.main"
+        textAlign="center"
       >
-        Pronto para saber da vida dos outros?
-      </Text>
-      <Text
-        variant="paragraph1"
-        tag="p"
-        color="tertiary.light"
-        marginBottom="32px"
-      >
-        Você está a um passo de saber tudoo que está
-        rolando no bairro, complete seu cadastro agora!
+        Enviar uma mensagem
       </Text>
 
       {isFormSubmitted && submissionStatus === formStates.DONE && (
@@ -104,6 +97,7 @@ function FormContent() {
         textAlign="center"
       >
         <Text
+          tag="p"
           marginBottom={0}
         >
           Deu tudo certo! Excellent!!
@@ -125,6 +119,7 @@ function FormContent() {
         textAlign="center"
       >
         <Text
+          tag="p"
           marginBottom={0}
         >
           Deu tudo Errado :(
@@ -157,7 +152,17 @@ function FormContent() {
           placeholder="johndoe@email.com"
           value={contactInfo.email}
           onChange={handleChange}
+          isInvalid={isEmailInvalid}
         />
+        {isEmailInvalid && (
+        <Text
+          tag="p"
+          marginTop="-10px"
+          isInvalid={isEmailInvalid}
+        >
+          Esse email não é valido.
+        </Text>
+        )}
       </div>
       <div>
         <p>Mensagem</p>
@@ -219,11 +224,10 @@ export default function FormContactUs({ propsModal }) {
         >
 
           <Box
-            style={{
-              position: 'absolute',
-              top: 30,
-              right: 30,
-            }}
+            position="absolute"
+            top={{ xs: '10px', md: '30px' }}
+            right={{ xs: '10px', md: '30px' }}
+            zIndex="100000"
           >
             <Text data-modal-close-button variant="smallestException" tag="a" href="#"><i className="icofont-close icofont-2x" /></Text>
           </Box>
