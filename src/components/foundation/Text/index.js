@@ -54,32 +54,73 @@ const TextBase = styled.span`
     ${TextStyleVariants()}
     ${propToStyle('textAlign')}
     ${propToStyle('margin')}
+    ${propToStyle('marginTop')}
+    ${propToStyle('marginBottom')}
     ${propToStyle('display')}
+    ${propToStyle('zIndex')}
+    ${({ theme, as }) => {
+    if (as === 'a') {
+      return css`    
+                text-align: center;
+                display: block;
+                text-decoration: none;
+                color: ${get(theme, 'colors.tertiary.light.color')};
+                &:hover {
+                    color: ${get(theme, 'colors.tertiary.light.contrastText')}
+                }
+            `;
+    }
+    return false;
+  }};
+  ${({ theme, isInvalid }) => {
+    if (isInvalid) {
+      return css`
+              color: ${get(theme, 'colors.error.main.color')};
+          `;
+    }
+    return false;
+  }};
 `;
 
 export default function Text({
-  tag, variant, children, ...props
+  tag, variant, children, isInvalid, ...props
 }) {
   // href = href != null ? href={}:'';
+  if (tag !== 'input') {
+    return (
+      <TextBase
+        as={tag}
+        variant={variant}
+        isInvalid={isInvalid}
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...props}
+      >
+        {children}
+      </TextBase>
+    );
+  }
   return (
     <TextBase
       as={tag}
       variant={variant}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
-    >
-      {children}
-    </TextBase>
+    />
   );
 }
 
 Text.propTypes = {
   tag: PropTypes.string.isRequired,
-  variant: PropTypes.string,
+  variant: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+  ]),
   children: PropTypes.node,
+  isInvalid: PropTypes.bool,
 };
 
 Text.defaultProps = {
   variant: 'text',
   children: '',
+  isInvalid: false,
 };

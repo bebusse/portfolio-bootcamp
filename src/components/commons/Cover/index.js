@@ -9,7 +9,7 @@ import Box from '../../foundation/layout/Box';
 const CoverWrapper = styled.header`
   background-image: url('/img/cover-background.jpg');
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  /* background-attachment: fixed; */
   background-size: cover;
   padding: 14px;
   position: relative;

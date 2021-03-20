@@ -1,5 +1,6 @@
 // import {MenuWrapper} from '../Menu/styles/MenuWrapper.js';
 import React from 'react';
+import PropTypes from 'prop-types';
 import Logo from '../../../theme/Logo';
 // import { Button } from '../Button/index';
 // import Text from '../../foundation/Text';
@@ -7,7 +8,7 @@ import HeaderWrapper from './styles/HeaderWrapper';
 import NavBar from './NavBar';
 import Grid from '../../foundation/layout/Grid';
 
-export default function Header() {
+export default function Header({ onOpenContactModal }) {
   return (
     <HeaderWrapper>
       <Grid.Container>
@@ -30,10 +31,14 @@ export default function Header() {
             justifyContent="center"
             flexDirection="column"
           >
-            <NavBar />
+            <NavBar onOpenContactModal={() => onOpenContactModal()} />
           </Grid.Col>
         </Grid.Row>
       </Grid.Container>
     </HeaderWrapper>
   );
 }
+
+Header.propTypes = {
+  onOpenContactModal: PropTypes.func.isRequired,
+};

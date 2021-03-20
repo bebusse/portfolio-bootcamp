@@ -27,10 +27,18 @@ export const colors = {
       color: '#D7385E',
       contrastText: '#fff',
     },
+    light: {
+      color: '#88989E',
+      contrastText: '#fff',
+    },
   },
   secondary: {
     main: {
       color: '#FB7B6B',
+      contrastText: '#fff',
+    },
+    light: {
+      color: '#88989E',
       contrastText: '#fff',
     },
   },
@@ -41,6 +49,12 @@ export const colors = {
     },
     light: {
       color: '#88989E',
+      contrastText: '#000',
+    },
+  },
+  error: {
+    main: {
+      color: '#b30000',
       contrastText: '#fff',
     },
   },
