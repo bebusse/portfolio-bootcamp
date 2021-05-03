@@ -15,7 +15,7 @@ ProjectInternalScreen.propTypes = ProjectScreen.propTypes;
 export default websitePageHOC(ProjectInternalScreen);
 
 export async function getStaticProps({ params }) {
-  const projects = await fetch('http://localhost:3000/api/content/projects')
+  const projects = await fetch('https://portfolio-bernardo.vercel.app/api/content/projects')
     .then(async (respostaDoServer) => {
       const resposta = await respostaDoServer.json();
       return resposta;
@@ -35,7 +35,7 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const projects = await fetch('http://localhost:3000/api/content/projects')
+  const projects = await fetch('https://portfolio-bernardo.vercel.app/api/content/projects')
     .then(async (respostaDoServer) => {
       const resposta = await respostaDoServer.json();
       return resposta;
