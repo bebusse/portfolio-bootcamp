@@ -31,11 +31,12 @@ export default function WebsitePageWrapper({
     >
       <SEO {...seoProps} />
       <Box
-        flex="1"
+        flex="1 1 auto"
         display="flex"
         flexWrap="wrap"
         flexDirection="column"
         justifyContent="space-between"
+        minHeight="100vh"
         {...pageBoxProps}
       >
         {coverProps.display && (
@@ -63,7 +64,7 @@ export default function WebsitePageWrapper({
 WebsitePageWrapper.defaultProps = {
   seoProps: {},
   coverProps: {
-    display: true,
+    display: false,
   },
   menuProps: {
     display: true,

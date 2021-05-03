@@ -230,7 +230,7 @@ export default function FormContactUs({ propsModal }) {
             right={{ xs: '10px', md: '30px' }}
             zIndex="100000"
           >
-            <Text data-modal-close-button variant="smallestException" tag="a" href="#"><i className="icofont-close icofont-2x" /></Text>
+            <Button data-modal-close-button variant="smallestException" ghost><i className="icofont-close icofont-2x" /></Button>
           </Box>
           <FormContent />
         </Box>

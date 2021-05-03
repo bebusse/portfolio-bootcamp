@@ -4,6 +4,7 @@ import get from 'lodash/get';
 import PropTypes from 'prop-types';
 import propToStyle from '../../../theme/utils/propToStyle';
 import breakpointsMedia from '../../../theme/utils/breakpointsMedia';
+import Link from '../../commons/Link';
 
 function TextCss(theme, variant) {
   return css`    
@@ -50,7 +51,7 @@ function TextStyleVariants() {
 }
 
 const TextBase = styled.span`
-    /* ${({ variant }) => TextStyleVariantsMap[variant]}; */
+    color: ${({ theme, color }) => get(theme, `colors.${color}.color`)};
     ${TextStyleVariants()}
     ${propToStyle('textAlign')}
     ${propToStyle('margin')}
@@ -58,20 +59,6 @@ const TextBase = styled.span`
     ${propToStyle('marginBottom')}
     ${propToStyle('display')}
     ${propToStyle('zIndex')}
-    ${({ theme, as }) => {
-    if (as === 'a') {
-      return css`    
-                text-align: center;
-                display: block;
-                text-decoration: none;
-                color: ${get(theme, 'colors.tertiary.light.color')};
-                &:hover {
-                    color: ${get(theme, 'colors.tertiary.light.contrastText')}
-                }
-            `;
-    }
-    return false;
-  }};
   ${({ theme, isInvalid }) => {
     if (isInvalid) {
       return css`
@@ -83,15 +70,19 @@ const TextBase = styled.span`
 `;
 
 export default function Text({
-  tag, variant, children, isInvalid, ...props
+  tag, variant, children, href, ...props
 }) {
   // href = href != null ? href={}:'';
-  if (tag !== 'input') {
+  const isLink = Boolean(href);
+  if (isLink) {
+    // eslint-disable-next-line react/prop-types
+    const defaultColor = props.color ? props.color : 'link.main';
     return (
       <TextBase
-        as={tag}
+        as={Link}
         variant={variant}
-        isInvalid={isInvalid}
+        href={href}
+        color={defaultColor}
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...props}
       >
@@ -99,28 +90,45 @@ export default function Text({
       </TextBase>
     );
   }
+
+  if (tag === 'input') {
+    return (
+      <TextBase
+        as={tag}
+        variant={variant}
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...props}
+      />
+    );
+  }
+
   return (
     <TextBase
       as={tag}
       variant={variant}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
-    />
+    >
+      {children}
+    </TextBase>
   );
 }
 
 Text.propTypes = {
-  tag: PropTypes.string.isRequired,
+  tag: PropTypes.string,
   variant: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object,
   ]),
+  href: PropTypes.string,
   children: PropTypes.node,
   isInvalid: PropTypes.bool,
 };
 
 Text.defaultProps = {
+  href: undefined,
   variant: 'text',
   children: '',
   isInvalid: false,
+  tag: 'span',
 };

@@ -58,6 +58,12 @@ export const colors = {
       contrastText: '#fff',
     },
   },
+  link: {
+    main: {
+      color: '#00008b',
+      contrastText: '#fff',
+    },
+  },
   modes: {
     dark: {},
   },

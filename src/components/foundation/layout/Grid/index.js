@@ -10,26 +10,36 @@ const Container = styled.div`
     padding-left: 28px;
     margin-right: auto;
     margin-left: auto;
-    ${breakpointsMedia({
+  
+    ${({ theme }) => breakpointsMedia({
     xs: css`
-        max-width: initial;
-    `,
+          max-width: initial;
+      `,
     sm: css`
-        max-width: 576px; 
-    `,
+          max-width: ${theme.breakpoints.sm}px; 
+      `,
     md: css`
-        max-width: 768px;
-        padding-right: 16px;
-        padding-left: 16px; 
-    `,
+          max-width: ${theme.breakpoints.md}px;
+          padding-right: 16px;
+          padding-left: 16px; 
+      `,
     lg: css`
-        max-width: 1160px; 
-    `,
+          max-width: ${theme.breakpoints.lg}px;
+      `,
     xl: css`
-        max-width: 1222px;
-    `,
+          max-width: ${theme.breakpoints.xl}px;
+      `,
   })}
-    ${propToStyle('marginTop')}
+  ${propToStyle('marginTop')}
+  ${propToStyle('flex')}
+  ${propToStyle('marginLeft')}
+  ${propToStyle('marginRight')}
+  ${propToStyle('justifyContent')}
+  ${propToStyle('maxHeight')}
+  ${propToStyle('bottom')}
+  ${propToStyle('backgroundColor')}
+  ${propToStyle('textAlign')}
+  ${propToStyle('padding')}
 `;
 
 const Row = styled.div`
@@ -101,6 +111,7 @@ const Col = styled.div`
     ${propToStyle('maxHeight')}
     ${propToStyle('bottom')}
     ${propToStyle('alignItems')}
+    ${propToStyle('objectFit')}
 `;
 
 Col.defaultProps = {

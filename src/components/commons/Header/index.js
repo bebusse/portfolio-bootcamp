@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Logo from '../../../theme/Logo';
 // import { Button } from '../Button/index';
-// import Text from '../../foundation/Text';
+import Text from '../../foundation/Text';
 import HeaderWrapper from './styles/HeaderWrapper';
 import NavBar from './NavBar';
 import Grid from '../../foundation/layout/Grid';
@@ -21,7 +21,15 @@ export default function Header({ onOpenContactModal }) {
             justifyContent="center"
             flexDirection="column"
           >
-            <Logo />
+
+            <Text
+              variant="text"
+              tag="a"
+              href="/"
+            >
+              <Logo />
+            </Text>
+
           </Grid.Col>
           <Grid.Col
             offset={{ xs: 0, md: 6 }}

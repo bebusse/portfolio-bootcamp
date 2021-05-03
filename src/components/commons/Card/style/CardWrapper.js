@@ -16,27 +16,6 @@ const CardWrapper = styled.div`
   })}
   }
 
-  a {
-    text-align: center;
-    display: block;
-    text-decoration: none;
-    color: #88989E;
-    transition: 200ms ease-in-out;
-    ${breakpointsMedia({
-    xs: css`
-        ${TextStyleVariantsMap.small}
-    `,
-    md: css`
-      ${TextStyleVariantsMap.text}
-    `,
-  })}
-    &:hover,
-    &:focus {
-      font-weight: 500;
-      color: #070C0E;
-    }
-  }
-
 `;
 
 export { CardWrapper as default };
