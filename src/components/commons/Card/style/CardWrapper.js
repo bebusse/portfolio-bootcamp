@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import breakpointsMedia from '../../../../theme/utils/breakpointsMedia';
-import { TextStyleVariantsMap } from '../../../foundation/Text';
 
 const CardWrapper = styled.div`
   padding: 14px;

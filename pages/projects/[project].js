@@ -27,7 +27,6 @@ export async function getStaticProps({ params }) {
     }
     return false;
   });
-  console.log('dadosDaPagina', dadosDaPagina);
   return {
     props: {
       projectProps: dadosDaPagina,
