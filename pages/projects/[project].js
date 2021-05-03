@@ -34,20 +34,20 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export async function getStaticPaths() {
-  const projects = await fetch('https://portfolio-bernardo.vercel.app/api/content/projects')
-    .then(async (respostaDoServer) => {
-      const resposta = await respostaDoServer.json();
-      return resposta;
-    });
+// export async function getStaticPaths() {
+//   const projects = await fetch('https://portfolio-bernardo.vercel.app/api/content/projects')
+//     .then(async (respostaDoServer) => {
+//       const resposta = await respostaDoServer.json();
+//       return resposta;
+//     });
 
-  const paths = projects.map((project) => {
-    const projectSlug = project.alias;
-    return { params: { project: projectSlug } };
-  });
+//   const paths = projects.map((project) => {
+//     const projectSlug = project.alias;
+//     return { params: { project: projectSlug } };
+//   });
 
-  return {
-    paths,
-    fallback: false,
-  };
-}
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// }
