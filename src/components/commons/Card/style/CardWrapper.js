@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import breakpointsMedia from '../../../../theme/utils/breakpointsMedia';
-import { TextStyleVariantsMap } from '../../../foundation/Text';
 
 const CardWrapper = styled.div`
   padding: 14px;
@@ -14,27 +13,6 @@ const CardWrapper = styled.div`
         text-align: center;
     `,
   })}
-  }
-
-  a {
-    text-align: center;
-    display: block;
-    text-decoration: none;
-    color: #88989E;
-    transition: 200ms ease-in-out;
-    ${breakpointsMedia({
-    xs: css`
-        ${TextStyleVariantsMap.small}
-    `,
-    md: css`
-      ${TextStyleVariantsMap.text}
-    `,
-  })}
-    &:hover,
-    &:focus {
-      font-weight: 500;
-      color: #070C0E;
-    }
   }
 
 `;

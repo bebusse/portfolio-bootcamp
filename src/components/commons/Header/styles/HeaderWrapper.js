@@ -16,13 +16,10 @@ const HeaderWrapper = styled.nav`
       margin-right: auto;
       width: 100%;
       padding: 0 16px;
-      max-width: 768px;
     `,
     lg: css`
-      max-width: 1160px; 
     `,
     xl: css`
-      max-width: 1222px;
     `,
   })}
 `;

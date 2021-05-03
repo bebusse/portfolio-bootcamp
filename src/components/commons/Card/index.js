@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import Image from 'next/image';
 import { PropTypes } from 'prop-types';
@@ -6,20 +7,24 @@ import Grid from '../../foundation/layout/Grid';
 import Box from '../../foundation/layout/Box';
 import CardWrapper from './style/CardWrapper';
 
-function CardTitle({ children }) {
+function CardTitle({ children, href, ...props }) {
   return (
-    <Text tag="p" variant="h3">
-      {children}
-    </Text>
+    <Box margin="0 0 10px 0" {...props}>
+      <Text variant="h3" href={href}>
+        {children}
+      </Text>
+    </Box>
   );
 }
 
 CardTitle.propTypes = {
   children: PropTypes.node,
+  href: PropTypes.string,
 };
 
 CardTitle.defaultProps = {
   children: '',
+  href: '',
 };
 
 function CardText({ children }) {
@@ -45,7 +50,7 @@ CardText.defaultProps = {
   children: '',
 };
 
-function CardImage({ imageSource }) {
+function CardImage({ imageSource, alt }) {
   return (
     <Box
       maxHeight={{
@@ -62,6 +67,7 @@ function CardImage({ imageSource }) {
         width={287}
         height={390}
         layouy="contain"
+        alt={alt}
       />
     </Box>
   );
@@ -69,9 +75,19 @@ function CardImage({ imageSource }) {
 
 CardImage.propTypes = {
   imageSource: PropTypes.string.isRequired,
+  alt: PropTypes.string,
 };
 
-function CardFeatured({ imageSource, title, description }) {
+CardImage.defaultProps = {
+  alt: '',
+};
+
+function CardFeatured({
+  imageSource,
+  title,
+  description,
+  url,
+}) {
   return (
     <Grid.Container
       marginTop={{
@@ -88,13 +104,15 @@ function CardFeatured({ imageSource, title, description }) {
           <Grid.Col
             offset={{ xs: 0, md: 0 }}
             value={{ xs: 12, md: 8 }}
-            textAlign="center"
           >
-            <Image
-              src={imageSource}
-              width={680}
-              height={320}
-            />
+            <Text href={url}>
+              <Image
+                src={imageSource}
+                width={680}
+                height={320}
+                alt={title}
+              />
+            </Text>
           </Grid.Col>
           <Grid.Col
             offset={{ xs: 0, md: 0 }}
@@ -104,7 +122,7 @@ function CardFeatured({ imageSource, title, description }) {
               md: '0px',
             }}
           >
-            <CardTitle>
+            <CardTitle href={url} textAlign="left">
               {title}
             </CardTitle>
             <CardText>
@@ -121,22 +139,25 @@ CardFeatured.propTypes = {
   imageSource: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
+  url: PropTypes.string,
 };
 
 CardFeatured.defaultProps = {
   description: '',
+  url: '/',
 };
 
-function CardDefault({ imageSource, title }) {
+function CardDefault({ imageSource, title, url }) {
   return (
     <Grid.Col
       offset={{ xs: 0, md: 0 }}
       value={{ xs: 12, md: 4 }}
-      textAlign="center"
     >
       <CardWrapper>
-        <CardImage imageSource={imageSource} />
-        <CardTitle>
+        <Text href={url}>
+          <CardImage imageSource={imageSource} alt={title} />
+        </Text>
+        <CardTitle href={url} textAlign="center">
           {title}
         </CardTitle>
       </CardWrapper>
@@ -147,16 +168,18 @@ function CardDefault({ imageSource, title }) {
 CardDefault.propTypes = {
   imageSource: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
 };
 
-export default function Card(portfolioItem) {
+export default function Card(portfolioItem, rootUrl) {
   if (portfolioItem.featured) {
     return (
       <CardFeatured
         key={portfolioItem.title}
         imageSource={portfolioItem.imageSource}
         title={portfolioItem.title}
-        description={portfolioItem.description}
+        description={portfolioItem.summary}
+        url={rootUrl + portfolioItem.alias}
       />
     );
   }
@@ -165,6 +188,7 @@ export default function Card(portfolioItem) {
       key={portfolioItem.title}
       imageSource={portfolioItem.imageSource}
       title={portfolioItem.title}
+      url={rootUrl + portfolioItem.alias}
     />
   );
 }

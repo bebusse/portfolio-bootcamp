@@ -50,33 +50,40 @@ const NavWrapper = styled.nav`
 `;
 
 export default function NavBar({ onOpenContactModal }) {
-  const links = [
-    {
+  const links = {
+    sobre: {
       texto: 'Sobre Mim',
       url: '/sobre',
     },
-    {
+    contato: {
       texto: 'Contato',
       url: '/contato',
     },
-  ];
+  };
   return (
     <NavWrapper>
-      {links.map((link) => (
-        <li key={link.url}>
-          <Text
-            variant="text"
-            tag="a"
-            href={link.url}
-            onClick={(event) => {
-              event.preventDefault();
-              onOpenContactModal();
-            }}
-          >
-            {link.texto}
-          </Text>
-        </li>
-      ))}
+      <li key={links.sobre.url}>
+        <Text
+          variant="text"
+          tag="a"
+          href={links.sobre.url}
+        >
+          {links.sobre.texto}
+        </Text>
+      </li>
+      <li key={links.contato.url}>
+        <Text
+          variant="text"
+          tag="a"
+          href={links.contato.url}
+          onClick={(event) => {
+            event.preventDefault();
+            onOpenContactModal();
+          }}
+        >
+          {links.contato.texto}
+        </Text>
+      </li>
     </NavWrapper>
   );
 }

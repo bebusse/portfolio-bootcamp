@@ -1,13 +1,10 @@
-import HomeScreen from '../src/components/screens/HomeScreen';
+import NotFoundScreen from '../src/components/screens/NotFoundScreen';
 import WebsitePageHOC from '../src/components/wrappers/WebsitePage/hoc';
 
-export default WebsitePageHOC(HomeScreen, {
+export default WebsitePageHOC(NotFoundScreen, {
   pageWrapperProps: {
     seoProps: {
-      headTitle: 'Home',
-    },
-    coverProps: {
-      display: true,
+      headTitle: 'Página Não Encontrada',
     },
     menuProps: {
       display: true,
