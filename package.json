@@ -9,7 +9,8 @@
     "lint": "eslint --fix --ignore-path .gitignore .",
     "custom-script": "node ./custom-script.js",
     "prepare": "husky install",
-    "commit": "git add . && cz"
+    "commit": "git add . && cz",
+    "commit2": "git add . && cz"
   },
   "dependencies": {
     "@crello/react-lottie": "^0.0.11",
